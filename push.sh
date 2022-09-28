@@ -1,0 +1,10 @@
+cd /Users/zosawa_/hugo/Jouzeyu;
+hugo -D;
+cd public;
+git add .;
+git commit -m "feat: new blog";
+git push;
+cd ../;
+git add .;
+git commit -m "feat: new blog";
+git push;
