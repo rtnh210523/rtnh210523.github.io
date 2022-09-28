@@ -1,0 +1,74 @@
+/* 初始化a标签 */
+a {
+    text-decoration: none;
+    color: #777;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+
+/* 胶囊导航改变样式 */
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #24abf2;
+}
+
+.tool-nav ul li {
+    margin-bottom: 2px;
+    background-color: #f9f9f9;
+    border-radius: 5%;
+}
+
+
+
+/* 工具明细分类样式*/
+span{
+    font-size:1.5rem;
+    color:#24abf2;
+}
+
+/* .tool-li{
+    height:100px;
+} */
+
+.tool-li .tool-li-li{
+    width:100%;
+    height:100%;
+    border-radius: 2%;
+}
+
+.tool-li .tool-li-li i{
+    line-height: 100px;
+    font-size:4rem;
+    color:#f7f7f7;
+    
+}
+
+.tool-li .text-color-height{
+    color:#777;
+    height:5rem;
+    font-size:12px;
+}
+
+/* 设置工具明细中鼠标滑动效果 */
+.tool-li-li:hover{
+    position: relative;
+    top: -1px;
+    box-shadow: 0 10px 10px #ddd;
+    transition: 0.3s;
+}
+.tool-li-li:hover i{
+    /* 首先，图标的实现是:before伪元素控制的
+    :before伪元素默认是行内元素（即display: inline）
+    行内元素旋转无效，所以需要给.rotate:before伪元素加上display: inline-block，使其变为行内块元素。 */
+    display: inline-block;
+    font-size:5rem;
+    color:#fff;
+    transform: rotate(25deg);
+    transition: 0.3s;
+}

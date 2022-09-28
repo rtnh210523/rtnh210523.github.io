@@ -1,0 +1,56 @@
+/* a标签初始化 */
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+
+
+
+/* 改变bs框架中的内外边距，达到盒子紧挨盒子的效果 */
+.index-row-box{
+    margin:0;
+}
+.index-li{
+    padding: 0;
+}
+
+
+
+/* 不给盒子定义高度,使用内边距撑开盒子 */
+.index-col-box{
+    padding:50px 0;
+    border:1px solid #f9f9f9;
+}  
+
+
+
+/* 设置字体/颜色/大小 */
+.index-col-box i{
+    font-size: 8rem;
+    color:#ddd;
+}
+.index-col-box p{
+    font-size:2rem;
+    color:#777;
+}
+
+
+
+
+/* 设置鼠标滑动效果 */
+.index-li:hover i{
+    color:#24abf2;
+}
+.index-li:hover p{
+    color:#000;
+}
+.index-li:hover{
+    position: relative;
+    top: -1px;
+    box-shadow: 0 20px 20px #ddd;
+    transition: 0.3s;
+}
+
+
