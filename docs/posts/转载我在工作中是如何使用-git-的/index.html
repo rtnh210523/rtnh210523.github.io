@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>「转载」我在工作中是如何使用 Git 的 | Modder</title>
+<meta name="keywords" content="Git">
+<meta name="description" content="不要让时代的悲哀，成为你的悲哀！">
+<meta name="author" content="Modder">
+<link rel="canonical" href="https://rtnh210523.github.io/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://rtnh210523.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rtnh210523.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rtnh210523.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rtnh210523.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rtnh210523.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta property="og:title" content="「转载」我在工作中是如何使用 Git 的" />
+<meta property="og:description" content="不要让时代的悲哀，成为你的悲哀！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rtnh210523.github.io/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/" /><meta property="og:image" content="https://rtnh210523.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-14T19:32:18&#43;08:00" />
+<meta property="article:modified_time" content="2022-03-14T19:32:18&#43;08:00" /><meta property="og:site_name" content="Modder" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://rtnh210523.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
+
+<meta name="twitter:title" content="「转载」我在工作中是如何使用 Git 的"/>
+<meta name="twitter:description" content="不要让时代的悲哀，成为你的悲哀！"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rtnh210523.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "「转载」我在工作中是如何使用 Git 的",
+      "item": "https://rtnh210523.github.io/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "「转载」我在工作中是如何使用 Git 的",
+  "name": "「转载」我在工作中是如何使用 Git 的",
+  "description": "不要让时代的悲哀，成为你的悲哀！",
+  "keywords": [
+    "Git"
+  ],
+  "articleBody": "前言 最近在网上有个真实发生的案例比较火，说的是一个新入职的员工，不会用 Git 拉代码，第二天被开除。由此，可见 Git 对我们工作的重要性，无论是前端后端，都是离不开 Git 的，下面就让我们一探究竟吧。\n上面的案例引申出一个问题，入职一家新公司，你的 leader 给你分配了仓库的权限后，如何配置本地的 Git 环境并拉取代码？莫慌，按照下面我讲的四个步骤走，保证你可以顺利使用 Git 进行拉取代码！\n下载 Git 下载地址 ，选择自己系统对应的版本下载即可。\n在你的电脑上生成 ssh 秘钥，打开终端，执行 ssh-keygen -t rsa -C \"你公司内部邮箱地址\"，如果执行成功，切换到 ~/.ssh 目录下，此时目录应该如下所示。复制 id_rsa.pub 的内容。\n这里以 Github 为例，如下图所示，进入 settings -\u003e SSH and GPG keys 通过 cat 命令查看文件 id_rsa.pub 的内容，然后复制过来，点击 add ssh key，这一步等于说把你的公钥放到了 Github 上进行托管。\n全局配置 Git 的用户名和邮箱\n1 2 3 git config --global user.name \"xxx\" git config --global user.email \"xxx@xx.com\" 复制代码 完成以上四步，你就可以愉快 pull 代码开发了。和 https 拉取方式不同的是，https 方式需要每次提交前都手动输入用户名和密码，ssh 的方式配置完毕后 Git 都会使用你本地的私钥和远程仓库的公钥进行验证是否是一对秘钥，从而简化了操作流程。\nGit 简介 在介绍 Git 的相关操作前，我觉得非常有必要了解 Git 的由来，以及 Git 是用来解决什么问题的。Git（读音为/gɪt/）是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。 Linus Torvalds ，这个人我相信大家都知道吧，开源 Linux 系统的发明人。如今，你看到的大部分服务器其实都是运行在 Linux 系统上，令人感到称叹的是，这位大神级别的程序员不仅创造了 Linux 系统。那 Linux 的代码是如何管理的呢？2002 年之前，世界各地的志愿者把源代码文件通过 diff 的方式发给 Linus，然后由 Linus 本人通过手工方式合并代码！要知道，当时的 Linux 的代码量已经很大了，通过人工管理的方式，一是容易出错，二是效率低。于是 Linus 选择了一个商业的版本控制系统 BitKeeper，BitKeeper 的东家 BitMover 公司出于人道主义精神，授权 Linux 社区免费使用这个版本控制系统。最后，出于某种原因，BitMover 公司收回了 Linux 社区的免费使用权，于是 Linus 花了两周时间自己用 C 语言 写了一个分布式版本控制系统，这就是 Git 的由来了。\nGit 的工作区域和流程 要想弄懂 Git 是怎么对我们的代码进行管理的，那首当其冲的是了解 Git 的工作区域是如何构成的。因为，只有彻底弄懂了 Git 工作区域的构成，你才可以在适当的区域使用合适的命令。如下图所示，此图包含了 Git 的 4 个工作区和一些常见的操作。\nWorkspace：工作区，就是平时进行开发改动的地方，是当前看到最新的内容，在开发的过程也就是对工作区的操作\nIndex：暂存区，当执行 git add 的命令后，工作区的文件就会被移入暂存区，暂存区标记了当前工作区中那些内容是被 Git 管理的，当完成某个需求或者功能后需要提交代码，第一步就是通过 git add 先提交到暂存区。\nRepository：本地仓库，位于自己的电脑上，通过 git commit 提交暂存区的内容，会进入本地仓库。\nRemote：远程仓库，用来托管代码的服务器，远程仓库的内容能够被分布在多个地点的处于协作关系的本地仓库修改，本地仓库修改完代码后通过 git push 命令同步代码到远程仓库。\n一般来说，Git 的工作流程分为以下几步\n1 2 3 4 5 1.在工作区开发，添加，修改文件。 2.将修改后的文件放入暂存区。 3.将暂存区域的文件提交到本地仓库。 4.将本地仓库的修改推送到远程仓库。 复制代码 Git 基本操作 git add 添加文件到暂存区\n1 2 3 4 5 # 添加某个文件到暂存区，后面可以跟多个文件，以空格区分 git add xxx # 添加当前更改的所有文件到暂存区。 git add . 复制代码 git commit 1 2 3 4 5 6 7 8 9 # 提交暂存的更改，会新开编辑器进行编辑 git commit # 提交暂存的更改，并记录下备注 git commit -m \"you message\" # 等同于 git add . \u0026\u0026 git commit -m git commit -am # 对最近一次的提交的信息进行修改,此操作会修改commit的hash值 git commit --amend 复制代码 git pull 1 2 3 4 5 # 从远程仓库拉取代码并合并到本地，可简写为 git pull 等同于 git fetch \u0026\u0026 git merge git pull \u003c远程主机名\u003e \u003c远程分支名\u003e:\u003c本地分支名\u003e # 使用rebase的模式进行合并 git pull --rebase \u003c远程主机名\u003e \u003c远程分支名\u003e:\u003c本地分支名\u003e 复制代码 git fetch 与 git pull 不同的是 git fetch 操作仅仅只会拉取远程的更改，不会自动进行 merge 操作。对你当前的代码没有影响\n1 2 3 4 5 # 获取远程仓库特定分支的更新 git fetch \u003c远程主机名\u003e \u003c分支名\u003e # 获取远程仓库所有分支的更新 git fetch --all 复制代码 git branch 1 2 3 4 5 6 7 8 9 10 11 12 13 # 新建本地分支，但不切换 git branch # 查看本地分支 git branch # 查看远程分支 git branch -r # 查看本地和远程分支 git branch -a # 删除本地分支 git branch -D # 重新命名分支 git branch -m 复制代码 工作中使用 Git 解决问题的场景 git rebase 让你的提交记录更加清晰可读 git rebase 的使用 rebase 翻译为变基，他的作用和 merge 很相似，用于把一个分支的修改合并到当前分支上。\n如下图所示，下图介绍了经过 rebase 后提交历史的变化情况。\n现在我们来用一个例子来解释一下上面的过程。\n假设我们现在有 2 条分支，一个为 master，一个为 feature/1，他们都基于初始的一个提交 add readme 进行检出分支，之后，master 分支增加了 3.js 和 4.js 的文件，分别进行了 2 次提交，feature/1 也增加了 1.js 和 2.js 的文件，分别对应以下 2 条提交记录。\n此时，对应分支的提交记录如下。\nmaster 分支如下图：\nfeature/1 分支如下图\n结合起来看是这样的\n此时，切换到 feature/1 分支下，执行 git rebase master，成功之后，通过 git log 查看记录。\n如下图所示：可以看到先是逐个应用了 mater 分支的更改，然后以 master 分支最后的提交作为基点，再逐个应用 feature/1 的每个更改。\n所以，我们的提交记录就会非常清晰，没有分叉，上面演示的是比较顺利的情况，但是大部分情况下，rebase 的过程中会产生冲突的，此时，就需要手动解决冲突，然后使用依次 git add 、git rebase --continue 的方式来处理冲突，完成 rebase 的过程，如果不想要某次 rebase 的结果，那么需要使用 git rebase --skip 来跳过这次 rebase 操作。\ngit merge 和 git rebase 的区别 不同于 git rebase 的是，git merge 在不是 fast-forward（快速合并）的情况下，会产生一条额外的合并记录，类似 Merge branch 'xxx' into 'xxx' 的一条提交信息。\n另外，在解决冲突的时候，用 merge 只需要解决一次冲突即可，简单粗暴，而用 rebase 的时候 ，需要依次解决每次的冲突，才可以提交。\ngit rebase 交互模式 在开发中，常会遇到在一个分支上产生了很多的无效的提交，这种情况下使用 rebase 的交互式模式可以把已经发生的多次提交压缩成一次提交，得到了一个干净的提交历史，例如某个分支的提交历史情况如下：\n进入交互式模式的方式是执行：\n1 2 git rebase -i 复制代码 参数 base-commit 就是指明操作的基点提交对象，基于这个基点进行 rebase 的操作，对于上述提交历史的例子，我们要把最后的一个提交对象（ ac18084 ）之前的提交压缩成一次提交，我们需要执行的命令格式是：\n1 2 git rebase -i ac18084 复制代码 此时会进入一个 vim 的交互式页面，编辑器列出的信息像下列这样。\n想要合并这一堆更改，我们要使用 Squash 策略进行合并，即把当前的 commit 和它的上一个 commit 内容进行合并， 大概可以表示为下面这样，在交互模式的 rebase 下，至少保留一个 pick，否则命令会执行失败。\n1 2 3 4 5 pick ... ... s ... ... s ... ... s ... ... 复制代码 修改文件后 按下 : 然后 wq 保存退出，此时又会弹出一个编辑页面，这个页面是用来编辑提交的信息，修改为 feat: 更正，最后保存一下，接着使用 git branch 查看提交的 commit 信息，rebase 后的提交记录如下图所示，是不是清爽了很多？rebase 操作可以让我们的提交历史变得更加清晰。\n特别注意，只能在自己使用的 feature 分支上进行 rebase 操作，不允许在集成分支上进行 rebase，因为这种操作会修改集成分支的历史记录。\n使用 git cherry-pick 获取指定的 commit git cherry-pick 可以理解为”挑拣”提交，和 merge 合并一个分支的所有提交不同的是，它会获取某一个分支的单笔提交，并作为一个新的提交引入到你当前分支上。当我们需要在本地合入其他分支的提交时，如果我们不想对整个分支进行合并，而是只想将某一次提交合入到本地当前分支上，那么就要使用 git cherry-pick 了。\n如下场景，以下有三条分支，feature/cherry-pick1 和 feature/cherry-pick2 都是基于 master 检出的两条功能性分支，对应的分支 log 记录如下\nmaster 分支的提交如下 现在 master 只需要 feature/cherry-pick1 和 feature/cherry-pick2 有关 change 的修改，并不关心有关 fix 内容的修改。此时就可以用 cherry-pick 指令了。\n语法： git cherry-pick [commit-hash]\ncommit-hash 表示的是某次 commit 的 hash 值。现在，依次执行以下两条指令 git cherry-pick e0bb7f3、git cherry-pick c9a3101，过程中，如果出现冲突，解决冲突后 进行 git add ，接着执行 git cherry-pick --continue，最后，master 上的提交如下\n此时，master 分支上应用了需要的提交，就达到了我们想要的效果。如果需要多个 cherry-pick 需要同步到目标分支，可以简写为 git cherry-pick ...，这是一个左开右闭的区间，也就时说 first-commit-id 提交带来的代码的改动不会被合并过去，如果需要合并过去，可以使用 git cherry-pick ^...，它表示包含 first-commit-id 到 last-commit-id 在内的提交都会被合并过去。\n使用 git revert 回滚某次的提交 想象这么一个场景，你的项目最近有 2 个版本要上线，这两个版本还伴随着之前遗留的 bug 的修复，一开始的时候，你将 bug 修复在了第一个版本的 release 分支上，突然在发版前一天，测试那边反馈，需要把第一个版本修复 bug 的内容改在第二个版本上，这个时候，第一个版本的集成分支的提交应该包括了第一个版本的功能内容，遗留 bug 修复的提交和其他同事提交的内容，想要通过 reset 的方式粗暴摘除之前的关于 bug 修复的 commit 肯定是不行的，同时，这种做法比较危险，此时，我们既不想破坏之前的提交记录，又想撤回我们遗留 bug 的 commit 记录应该怎么做呢？git revert 就派上了用场。\ngit revert 撤销某次操作，此操作不会修改原本的提交记录，而是会新增一条提交记录来抵消某次操作。\n语法： git revert 针对普通 commit\ngit revert -m 针对 merge 的 commit\n下面就用一个案例来理解一下这个命令，如下图所示，假设被红框框起来的地方是会引起 bug 的一次提交，在他的提交之后，又进行了 2 次提交，其中包含了其它同事的提交。\n此时想把引起提交的 bug 的干掉，执行 git revert 1121932，执行操作后，再打开查看日志，如下图所示，可以看到是新增了一条 commit 记录，这个 commit 的产生的 msg 是自动生成的，Revert 开头，后面跟撤回的 commit-msg 信息 之前的 commit 记录并没有消失，此时也达到了代码回退的效果\n此外 git revert 也可以回滚多次的提交\n语法：git revert [commit-id1] [commit-id2] ... 注意这是一个前开后闭区间，即不包括 commit1 ，但包括 commit2 。\n回滚我们的提交有二种方式，一种是上文提到的git revert命令外，还可以使用 git reset 命令，那么它们两者有什么区别呢？\ngit revert 会新建一条 commit 信息，来撤回之前的修改。\ngit reset 会直接将提交记录退回到指定的 commit 上。\n对于个人的 feature 分支而言，可以使用 git reset 来回退历史记录，之后使用 git push --force 进行推送到远程，但是如果是在多人协作的集成分支上，不推荐直接使用 git reset 命令，而是使用更加安全的 git revert 命令进行撤回提交。这样，提交的历史记录不会被抹去，可以安全的进行撤回。\n使用 git stash 来暂存文件 会有这么一个场景，现在你正在用你的 feature 分支上开发新功能。这时，生产环境上出现了一个 bug 需要紧急修复，但是你这部分代码还没开发完，不想提交，怎么办？这个时候可以用 git stash 命令先把工作区已经修改的文件暂存起来，然后切换到 hotfix 分支上进行 bug 的修复，修复完成后，切换回 feature 分支，从堆栈中恢复刚刚保存的内容。\n基本命令如下\n1 2 3 4 5 6 7 git stash //把本地的改动暂存起来 git stash save \"message\" 执行存储时，添加备注，方便查找。 git stash pop // 应用最近一次暂存的修改，并删除暂存的记录 git stash apply // 应用某个存储,但不会把存储从存储列表中删除，默认使用第一个存储,即 stash@{0}，如果要使用其他个，git stash apply stash@{$num} 。 git stash list // 查看 stash 有哪些存储 git stash clear // 删除所有缓存的 stash 复制代码 下面通过几幅图对 stash 的命令做进一步了解。\n此时，我正在开发一个新功能，修改了 1.js 文件里的内容\n还没开发完成，这个时候，我想切换到 hotfix 分支上修复 bug，得暂停下开发切换到 hotfix 分支，但是现在工作区还有内容，此时如果切换分支 Git 会报出下面的错误\n1 2 3 4 5 error: Your local changes to the following files would be overwritten by checkout: 1.js Please commit your changes or stash them before you switch branches. Aborting 复制代码 上面那句话的意思就是说工作区有文件修改，不能提交，需要先进行 commit 或者 stash 操作，执行 git stash，结果如下\n1 2 Saved working directory and index state WIP on stash: 22e561c feat: add 1.js 复制代码 此时，我们的工作区已经干净了，可以切换到 hotfix 分支进行 bug 修复的工作，假设我们现在 bug 修复完成了，继续切回 feature 分支进行原本功能的开发，此时只需要执行 git stash pop，之前我们暂存的修改就会恢复到工作区，如下图所示。\n当我们想要暂存文件，切换分支做某些事的时候，可以用 git stash 这种机制帮助开发。\n推荐在使用 stash 的相关命令时，每一次暂存的时候，不要直接使用 git stash 命令进行暂存下来，而是使用 git stash save \"message...\" 这种方式，给本次的提交做一个信息的记录。这样，想应用更改的时候，先通过 git stash list 查看一下所有的暂存列表。之后，推荐使用 git stash apply stash@${num} 的方式进行应用对应的 stash，这样不会清空已有的 stash 的列表项，并且能应用到当前的工作区，不需要这个暂存的话，再手动清除就可以了。\n不同的工作区域撤销更改 开发中，我们经常需要回退代码的操作，在不同的工作区域中，回退代码的方式也是不相同的。如下图所示，假设现在要在 feature/revoke 分支上进行开发,\n首先通过 git status 查看下现在的状态。\n目前我们的工作区是很干净的，没有任何修改的操作，此时，修改一下代码再次查看状态，可以看到，1.js 这个文件被修改了。\n现在我们想把 1.js 这个文件恢复到修改前的状态，即撤回工作区的修改，就可以使用 git checkout -- 的命令，如果要撤回多个文件的修改，文件之间使用空格隔开，如下图所示，我们撤回了 1.js 文件的修改，工作区也恢复干净了。\n如果说现在我们对文件进行了修改，并且已经提交到暂存区了，这部分文件我们不想要的话，那么就可以通过 git reset 的命令来对特定的文件进行撤销，git reset 会撤回所有存在暂存区的文件，如下图所示，查看前后的状态可知，文件最后成功撤回到工作区了。\n配置 git alias 提升工作效率 一般我们在工作中，接到开发任务后，需要新创建一个分支进行开发 此时需要 用到 git branch、git checkout、 git pull 等命令，在我们一顿操作后，开发完成，到了提交代码的阶段，又要诸如此类 git add 、git commit、git push 等命令，虽然简单，但是输入起来也是不够简洁，作为一个程序员，开发程序就是为了提高我们的效率的，懒是人类进步的源泉，所以我们可以通过配置别名的方式，简化这些命令。\n它的基本用法是 git config --global alias.\u003c简化的字符\u003e 原始命令\n如下面的例子：\n1 2 3 4 $ git config --global alias.co checkout $ git config --global alias.ci commit $ git config --global alias.br branch 复制代码 这里将 co 表示 checkout，ci 表示 commit，br 表示 branch，以后提交就可以简写成\n--global 是全局参数，也就是配置一次后，这些命令可以在这台电脑下的所有仓库都适用。这些命令其实是更新你全局的 .gitconfig 文件，该文件用来保存全局的 git 配置，vim ~/.gitconfig，执行这段命令后，显示如下，下图展示了刚才通过 git config --global alias 添加的 alias。\n除了上面那种直接通过命令的方式外，也可以通过修改这个文件的 alias 项来设置别名。\n这里分享一个我自己常用的别名设置，把以下配置替换到 .gitconfig 文件里的 [alias] 所属的区域，然后就可以愉快的使用了~\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 [alias] st = status -sb co = checkout br = branch mg = merge ci = commit ds = diff --staged dt = difftool mt = mergetool last = log -1 HEAD latest = for-each-ref --sort=-committerdate --format=\\\"%(committername)@%(refname:short) [%(committerdate:short)] %(contents)\\\" ls = log --pretty=format:\\\"%C(yellow)%h %C(blue)%ad %C(red)%d %C(reset)%s %C(green)[%cn]\\\" --decorate --date=short hist = log --pretty=format:\\\"%C(yellow)%h %C(red)%d %C(reset)%s %C(green)[%an] %C(blue)%ad\\\" --topo-order --graph --date=short type = cat-file -t dump = cat-file -p lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)\u003c%an\u003e%Creset' --abbrev-commit 复制代码 这样，我们每次想查看 Git 的历史记录,就不用输入那么一长串命令 直接使用 git lg ，下图是 axios 源码里的提交记录，使用封装后的 git lg 查看的效果图\n分支之间的关系一眼就很明了，在哪个 commit 上进行的 merge 操作也很清晰，可以帮助我们很好的追溯历史的提交和解决问题。\n总结 本文由浅入深的的讲解了 Git 的环境搭建，基本用法，以及工作中使用较为高频的 Git 命令的用法，无论你是前端后端还是其它端的开发，日常工作中少不了对 Git 的使用，我们不仅要会用，还要用的漂亮，用的灵活，用的稳健。这样才能在和同事协作项目的时候更加得心应手，学会了本文这些 Git 的使用技巧后，在日常工作中多多练习，相信会给你带来很大的收获！\n作者：政采云前端团队 链接：https://juejin.cn/post/6974184935804534815 来源：稀土掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。\n",
+  "wordCount" : "1110",
+  "inLanguage": "en",
+  "datePublished": "2022-03-14T19:32:18+08:00",
+  "dateModified": "2022-03-14T19:32:18+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Modder"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rtnh210523.github.io/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Modder",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rtnh210523.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rtnh210523.github.io/" accesskey="h" title="Modder (Alt + H)">Modder</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rtnh210523.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rtnh210523.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rtnh210523.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rtnh210523.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rtnh210523.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://rtnh210523.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rtnh210523.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      「转载」我在工作中是如何使用 Git 的
+    </h1>
+    <div class="post-meta"><span title='2022-03-14 19:32:18 +0800 CST'>March 14, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1110 words&nbsp;·&nbsp;Modder
+
+·  <span id="busuanzi_value_page_pv"></span>&nbsp;count
+    </div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#git-简介">Git 简介</a></li>
+    <li><a href="#git-的工作区域和流程">Git 的工作区域和流程</a></li>
+    <li><a href="#git-基本操作">Git 基本操作</a>
+      <ul>
+        <li><a href="#git-add">git add</a></li>
+        <li><a href="#git-commit">git commit</a></li>
+        <li><a href="#git-pull">git pull</a></li>
+        <li><a href="#git-fetch">git fetch</a></li>
+        <li><a href="#git-branch">git branch</a></li>
+      </ul>
+    </li>
+    <li><a href="#工作中使用-git-解决问题的场景">工作中使用 Git 解决问题的场景</a>
+      <ul>
+        <li><a href="#git-rebase-让你的提交记录更加清晰可读">git rebase 让你的提交记录更加清晰可读</a></li>
+        <li><a href="#使用-git-cherry-pick-获取指定的-commit">使用 git cherry-pick 获取指定的 commit</a></li>
+        <li><a href="#使用-git-revert-回滚某次的提交">使用 git revert 回滚某次的提交</a></li>
+        <li><a href="#使用-git-stash-来暂存文件">使用 git stash 来暂存文件</a></li>
+        <li><a href="#不同的工作区域撤销更改">不同的工作区域撤销更改</a></li>
+        <li><a href="#配置-git-alias-提升工作效率">配置 git alias 提升工作效率</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
+<p>最近在网上有个真实发生的案例比较火，说的是一个新入职的员工，不会用 Git 拉代码，第二天被开除。由此，可见 Git 对我们工作的重要性，无论是前端后端，都是离不开 Git 的，下面就让我们一探究竟吧。</p>
+<p>上面的案例引申出一个问题，入职一家新公司，你的 leader 给你分配了仓库的权限后，如何配置本地的 Git 环境并拉取代码？莫慌，按照下面我讲的四个步骤走，保证你可以顺利使用 Git 进行拉取代码！</p>
+<ol>
+<li>
+<p>下载 Git <a href="https://link.juejin.cn?target=https%3A%2F%2Fgit-scm.com%2Fdownloads">下载地址</a> ，选择自己系统对应的版本下载即可。</p>
+</li>
+<li>
+<p>在你的电脑上生成 ssh 秘钥，打开终端，执行 <code>ssh-keygen -t rsa -C &quot;你公司内部邮箱地址&quot;</code>，如果执行成功，切换到 <code>~/.ssh</code> 目录下，此时目录应该如下所示。复制 <code>id_rsa.pub</code> 的内容。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0deb58d91310414f80eff364c694af9c~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519163921819.png"  />
+</p>
+</li>
+<li>
+<p>这里以 Github 为例，如下图所示，进入 <code>settings -&gt; SSH and GPG keys</code> 通过 <code>cat</code> 命令查看文件 <code>id_rsa.pub</code> 的内容，然后复制过来，点击 <code>add ssh key</code>，这一步等于说把你的公钥放到了 Github 上进行托管。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1ff633573cc946bab9a13f014a099d7b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519164643069.png"  />
+</p>
+</li>
+<li>
+<p>全局配置 Git 的用户名和邮箱</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;xxx&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;xxx@xx.com&#34;</span>
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成以上四步，你就可以愉快 pull 代码开发了。和 https 拉取方式不同的是，https 方式需要每次提交前都手动输入用户名和密码，ssh 的方式配置完毕后 Git 都会使用你本地的私钥和远程仓库的公钥进行验证是否是一对秘钥，从而简化了操作流程。</p>
+<h2 id="git-简介">Git 简介<a hidden class="anchor" aria-hidden="true" href="#git-简介">#</a></h2>
+<p>在介绍 Git 的相关操作前，我觉得非常有必要了解 Git 的由来，以及 Git 是用来解决什么问题的。Git（读音为/gɪt/）是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。 Linus Torvalds ，这个人我相信大家都知道吧，开源 Linux 系统的发明人。如今，你看到的大部分服务器其实都是运行在 Linux 系统上，令人感到称叹的是，这位大神级别的程序员不仅创造了 Linux 系统。那 Linux 的代码是如何管理的呢？2002 年之前，世界各地的志愿者把源代码文件通过 diff 的方式发给 Linus，然后由 Linus 本人通过手工方式合并代码！要知道，当时的 Linux 的代码量已经很大了，通过人工管理的方式，一是容易出错，二是效率低。于是 Linus 选择了一个商业的版本控制系统 BitKeeper，BitKeeper 的东家 BitMover 公司出于人道主义精神，授权 Linux 社区免费使用这个版本控制系统。最后，出于某种原因，BitMover 公司收回了 Linux 社区的免费使用权，于是 Linus 花了两周时间自己用 C 语言 写了一个分布式版本控制系统，这就是 Git 的由来了。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1363adc08773478eb98e278660322996~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"  />
+</p>
+<h2 id="git-的工作区域和流程">Git 的工作区域和流程<a hidden class="anchor" aria-hidden="true" href="#git-的工作区域和流程">#</a></h2>
+<p>要想弄懂 Git 是怎么对我们的代码进行管理的，那首当其冲的是了解 Git 的工作区域是如何构成的。因为，只有彻底弄懂了 Git 工作区域的构成，你才可以在适当的区域使用合适的命令。如下图所示，此图包含了 Git 的 4 个工作区和一些常见的操作。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ec7210655b4d4fc4afcd1466d9aa2343~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="git"  />
+</p>
+<p>Workspace：工作区，就是平时进行开发改动的地方，是当前看到最新的内容，在开发的过程也就是对工作区的操作</p>
+<p>Index：暂存区，当执行 <code>git add</code> 的命令后，工作区的文件就会被移入暂存区，暂存区标记了当前工作区中那些内容是被 Git 管理的，当完成某个需求或者功能后需要提交代码，第一步就是通过 <code>git add</code> 先提交到暂存区。</p>
+<p>Repository：本地仓库，位于自己的电脑上，通过 <code>git commit</code> 提交暂存区的内容，会进入本地仓库。</p>
+<p>Remote：远程仓库，用来托管代码的服务器，远程仓库的内容能够被分布在多个地点的处于协作关系的本地仓库修改，本地仓库修改完代码后通过 <code>git push</code> 命令同步代码到远程仓库。</p>
+<p>一般来说，Git 的工作流程分为以下几步</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.在工作区开发，添加，修改文件。
+</span></span><span class="line"><span class="cl">2.将修改后的文件放入暂存区。
+</span></span><span class="line"><span class="cl">3.将暂存区域的文件提交到本地仓库。
+</span></span><span class="line"><span class="cl">4.将本地仓库的修改推送到远程仓库。
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="git-基本操作">Git 基本操作<a hidden class="anchor" aria-hidden="true" href="#git-基本操作">#</a></h2>
+<h3 id="git-add">git add<a hidden class="anchor" aria-hidden="true" href="#git-add">#</a></h3>
+<p>添加文件到暂存区</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加某个文件到暂存区，后面可以跟多个文件，以空格区分</span>
+</span></span><span class="line"><span class="cl">git add xxx
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加当前更改的所有文件到暂存区。</span>
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="git-commit">git commit<a hidden class="anchor" aria-hidden="true" href="#git-commit">#</a></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 提交暂存的更改，会新开编辑器进行编辑</span>
+</span></span><span class="line"><span class="cl">git commit
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交暂存的更改，并记录下备注</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;you message&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 等同于 git add . &amp;&amp; git commit -m</span>
+</span></span><span class="line"><span class="cl">git commit -am
+</span></span><span class="line"><span class="cl"><span class="c1"># 对最近一次的提交的信息进行修改,此操作会修改commit的hash值</span>
+</span></span><span class="line"><span class="cl">git commit --amend
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="git-pull">git pull<a hidden class="anchor" aria-hidden="true" href="#git-pull">#</a></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 从远程仓库拉取代码并合并到本地，可简写为 git pull 等同于 git fetch &amp;&amp; git merge</span>
+</span></span><span class="line"><span class="cl">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用rebase的模式进行合并</span>
+</span></span><span class="line"><span class="cl">git pull --rebase &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="git-fetch">git fetch<a hidden class="anchor" aria-hidden="true" href="#git-fetch">#</a></h3>
+<p>与 <code>git pull</code> 不同的是 <code>git fetch</code> 操作仅仅只会拉取远程的更改，不会自动进行 merge 操作。对你当前的代码没有影响</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 获取远程仓库特定分支的更新</span>
+</span></span><span class="line"><span class="cl">git fetch &lt;远程主机名&gt; &lt;分支名&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取远程仓库所有分支的更新</span>
+</span></span><span class="line"><span class="cl">git fetch --all
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="git-branch">git branch<a hidden class="anchor" aria-hidden="true" href="#git-branch">#</a></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 新建本地分支，但不切换</span>
+</span></span><span class="line"><span class="cl">git branch &lt;branch-name&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看本地分支</span>
+</span></span><span class="line"><span class="cl">git branch
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看远程分支</span>
+</span></span><span class="line"><span class="cl">git branch -r
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看本地和远程分支</span>
+</span></span><span class="line"><span class="cl">git branch -a
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除本地分支</span>
+</span></span><span class="line"><span class="cl">git branch -D &lt;branch-nane&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新命名分支</span>
+</span></span><span class="line"><span class="cl">git branch -m &lt;old-branch-name&gt; &lt;new-branch-name&gt;
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="工作中使用-git-解决问题的场景">工作中使用 Git 解决问题的场景<a hidden class="anchor" aria-hidden="true" href="#工作中使用-git-解决问题的场景">#</a></h2>
+<h3 id="git-rebase-让你的提交记录更加清晰可读">git rebase 让你的提交记录更加清晰可读<a hidden class="anchor" aria-hidden="true" href="#git-rebase-让你的提交记录更加清晰可读">#</a></h3>
+<h4 id="git-rebase-的使用">git rebase 的使用<a hidden class="anchor" aria-hidden="true" href="#git-rebase-的使用">#</a></h4>
+<p>rebase 翻译为变基，他的作用和 merge 很相似，用于把一个分支的修改合并到当前分支上。</p>
+<p>如下图所示，下图介绍了经过 rebase 后提交历史的变化情况。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b169721a6bfc42a7b4754f7c5d65672d~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="WechatIMG2.png"  />
+</p>
+<p>现在我们来用一个例子来解释一下上面的过程。</p>
+<p>假设我们现在有 2 条分支，一个为 master，一个为 feature/1，他们都基于初始的一个提交 add readme 进行检出分支，之后，master 分支增加了 3.js 和 4.js 的文件，分别进行了 2 次提交，feature/1 也增加了 1.js 和 2.js 的文件，分别对应以下 2 条提交记录。</p>
+<p>此时，对应分支的提交记录如下。</p>
+<p>master 分支如下图：</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/64147d864ec44c3494560c3547010bbe~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210531144909187.png"  />
+</p>
+<p>feature/1 分支如下图</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/81543f378abd4a16bf74947d2200ffa9~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210531145504071.png"  />
+</p>
+<p>结合起来看是这样的</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35519191523f4568bf6135bfcfb223a2~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210531145553107.png"  />
+</p>
+<p>此时，切换到 feature/1 分支下，执行 <code>git rebase master</code>，成功之后，通过 <code>git log</code> 查看记录。</p>
+<p>如下图所示：可以看到先是逐个应用了 mater 分支的更改，然后以 master 分支最后的提交作为基点，再逐个应用 feature/1 的每个更改。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fcb57edd0b594ff6ad7bc7d25ba128f9~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210531150719965.png"  />
+</p>
+<p>所以，我们的提交记录就会非常清晰，没有分叉，上面演示的是比较顺利的情况，但是大部分情况下，rebase 的过程中会产生冲突的，此时，就需要手动解决冲突，然后使用依次 <code>git add </code> 、<code>git rebase --continue </code> 的方式来处理冲突，完成 rebase 的过程，如果不想要某次 rebase 的结果，那么需要使用 <code>git rebase --skip </code> 来跳过这次 rebase 操作。</p>
+<h4 id="git-merge-和-git-rebase-的区别">git merge 和 git rebase 的区别<a hidden class="anchor" aria-hidden="true" href="#git-merge-和-git-rebase-的区别">#</a></h4>
+<p>不同于 <code>git rebase</code> 的是，<code>git merge</code> 在不是 fast-forward（快速合并）的情况下，会产生一条额外的合并记录，类似 <code>Merge branch 'xxx' into 'xxx'</code> 的一条提交信息。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/14b182abe7c54161959596eb5b140299~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210531151838328.png"  />
+</p>
+<p>另外，在解决冲突的时候，用 merge 只需要解决一次冲突即可，简单粗暴，而用 rebase 的时候 ，需要依次解决每次的冲突，才可以提交。</p>
+<h4 id="git-rebase-交互模式">git rebase 交互模式<a hidden class="anchor" aria-hidden="true" href="#git-rebase-交互模式">#</a></h4>
+<p>在开发中，常会遇到在一个分支上产生了很多的无效的提交，这种情况下使用 rebase 的交互式模式可以把已经发生的多次提交压缩成一次提交，得到了一个干净的提交历史，例如某个分支的提交历史情况如下：</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ee27b108f03443a58c19600cac7ddf70~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518211345258.png"  />
+</p>
+<p>进入交互式模式的方式是执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git rebase -i &lt;base-commit&gt;
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数 <code>base-commit</code> 就是指明操作的基点提交对象，基于这个基点进行 rebase 的操作，对于上述提交历史的例子，我们要把最后的一个提交对象（ ac18084 ）之前的提交压缩成一次提交，我们需要执行的命令格式是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git rebase -i ac18084
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时会进入一个 vim 的交互式页面，编辑器列出的信息像下列这样。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3fd2ea54dbbe4c88a51fc652c6b1e86f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518212036198.png"  />
+</p>
+<p>想要合并这一堆更改，我们要使用 Squash 策略进行合并，即把当前的 commit 和它的上一个 commit 内容进行合并， 大概可以表示为下面这样，在交互模式的 rebase 下，至少保留一个 pick，否则命令会执行失败。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pick  ... ...
+</span></span><span class="line"><span class="cl">s     ... ...
+</span></span><span class="line"><span class="cl">s     ... ...
+</span></span><span class="line"><span class="cl">s     ... ...
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改文件后 按下 <code>:</code> 然后 <code>wq</code> 保存退出，此时又会弹出一个编辑页面，这个页面是用来编辑提交的信息，修改为 <code>feat: 更正</code>，最后保存一下，接着使用 <code>git branch</code> 查看提交的 commit 信息，rebase 后的提交记录如下图所示，是不是清爽了很多？rebase 操作可以让我们的提交历史变得更加清晰。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2586ec49060f4dfc9006c8f3fc532260~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518212812000.png"  />
+</p>
+<blockquote>
+<p>特别注意，只能在自己使用的 feature 分支上进行 rebase 操作，不允许在集成分支上进行 rebase，因为这种操作会修改集成分支的历史记录。</p>
+</blockquote>
+<h3 id="使用-git-cherry-pick-获取指定的-commit">使用 git cherry-pick 获取指定的 commit<a hidden class="anchor" aria-hidden="true" href="#使用-git-cherry-pick-获取指定的-commit">#</a></h3>
+<p><code>git cherry-pick</code> 可以理解为”挑拣”提交，和 merge 合并一个分支的所有提交不同的是，它会获取某一个分支的单笔提交，并作为一个新的提交引入到你当前分支上。当我们需要在本地合入其他分支的提交时，如果我们不想对整个分支进行合并，而是只想将某一次提交合入到本地当前分支上，那么就要使用 <code>git cherry-pick</code> 了。</p>
+<p>如下场景，以下有三条分支，feature/cherry-pick1 和 feature/cherry-pick2 都是基于 master 检出的两条功能性分支，对应的分支 log 记录如下</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/66e205eb421841bfa476167e6fd7c581~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518221001432.png"  />
+</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c5743a18a0c24b3aa085db3d7a620742~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518221010458.png"  />
+</p>
+<p>master 分支的提交如下 <img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/64fe055a5e764ff58e85923314096f9e~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518221051734.png"  />
+</p>
+<p>现在 master 只需要 feature/cherry-pick1 和 feature/cherry-pick2 有关 change 的修改，并不关心有关 fix 内容的修改。此时就可以用 cherry-pick 指令了。</p>
+<p>语法： <code>git cherry-pick [commit-hash]</code></p>
+<p>commit-hash 表示的是某次 commit 的 hash 值。现在，依次执行以下两条指令 <code>git cherry-pick e0bb7f3</code>、<code>git cherry-pick c9a3101</code>，过程中，如果出现冲突，解决冲突后 进行 <code>git add </code>，接着执行 <code>git cherry-pick --continue</code>，最后，master 上的提交如下</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/38f9c71679824941abdf98b769b9a062~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210518235707190.png"  />
+</p>
+<p>此时，master 分支上应用了需要的提交，就达到了我们想要的效果。如果需要多个 cherry-pick 需要同步到目标分支，可以简写为 <code>git cherry-pick &lt;first-commit-id&gt;...&lt;last-commit-id&gt;</code>，这是一个左开右闭的区间，也就时说 <code>first-commit-id</code> 提交带来的代码的改动不会被合并过去，如果需要合并过去，可以使用 <code>git cherry-pick &lt;first-commit-id&gt;^...&lt;last-commit-id&gt;</code>，它表示包含 <code>first-commit-id</code> 到 <code>last-commit-id</code> 在内的提交都会被合并过去。</p>
+<h3 id="使用-git-revert-回滚某次的提交">使用 git revert 回滚某次的提交<a hidden class="anchor" aria-hidden="true" href="#使用-git-revert-回滚某次的提交">#</a></h3>
+<p>想象这么一个场景，你的项目最近有 2 个版本要上线，这两个版本还伴随着之前遗留的 bug 的修复，一开始的时候，你将 bug 修复在了第一个版本的 release 分支上，突然在发版前一天，测试那边反馈，需要把第一个版本修复 bug 的内容改在第二个版本上，这个时候，第一个版本的集成分支的提交应该包括了第一个版本的功能内容，遗留 bug 修复的提交和其他同事提交的内容，想要通过 reset 的方式粗暴摘除之前的关于 bug 修复的 commit 肯定是不行的，同时，这种做法比较危险，此时，我们既不想破坏之前的提交记录，又想撤回我们遗留 bug 的 commit 记录应该怎么做呢？git revert 就派上了用场。</p>
+<blockquote>
+<p><code>git revert</code> 撤销某次操作，此操作不会修改原本的提交记录，而是会新增一条提交记录来抵消某次操作。</p>
+</blockquote>
+<p>语法： <code>git revert &lt;commit-id&gt;</code> 针对普通 commit</p>
+<p><code>git revert &lt;commit-id&gt; -m</code> 针对 merge 的 commit</p>
+<p>下面就用一个案例来理解一下这个命令，如下图所示，假设被红框框起来的地方是会引起 bug 的一次提交，在他的提交之后，又进行了 2 次提交，其中包含了其它同事的提交。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f36331158e084072a033802bf4fa0478~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519142702752.png"  />
+</p>
+<p>此时想把引起提交的 bug 的干掉，执行 <code>git revert 1121932</code>，执行操作后，再打开查看日志，如下图所示，可以看到是新增了一条 commit 记录，这个 commit 的产生的 msg 是自动生成的，Revert 开头，后面跟撤回的 commit-msg 信息 之前的 commit 记录并没有消失，此时也达到了代码回退的效果</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9729e537218e4609b54df3e899fd332f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519142824836.png"  />
+</p>
+<p>此外 git revert 也可以回滚多次的提交</p>
+<p>语法：<code>git revert [commit-id1] [commit-id2] ...</code> 注意这是一个前开后闭区间，即不包括 commit1 ，但包括 commit2 。</p>
+<p>回滚我们的提交有二种方式，一种是上文提到的<code>git revert</code>命令外，还可以使用 <code>git reset</code> 命令，那么它们两者有什么区别呢？</p>
+<p><code>git revert</code> 会新建一条 commit 信息，来撤回之前的修改。</p>
+<p><code>git reset</code> 会直接将提交记录退回到指定的 commit 上。</p>
+<p>对于个人的 feature 分支而言，可以使用 <code>git reset</code> 来回退历史记录，之后使用 <code>git push --force</code> 进行推送到远程，但是如果是在多人协作的集成分支上，不推荐直接使用 <code>git reset</code> 命令，而是使用更加安全的 <code>git revert</code> 命令进行撤回提交。这样，提交的历史记录不会被抹去，可以安全的进行撤回。</p>
+<h3 id="使用-git-stash-来暂存文件">使用 git stash 来暂存文件<a hidden class="anchor" aria-hidden="true" href="#使用-git-stash-来暂存文件">#</a></h3>
+<p>会有这么一个场景，现在你正在用你的 feature 分支上开发新功能。这时，生产环境上出现了一个 bug 需要紧急修复，但是你这部分代码还没开发完，不想提交，怎么办？这个时候可以用 <code>git stash</code> 命令先把工作区已经修改的文件暂存起来，然后切换到 hotfix 分支上进行 bug 的修复，修复完成后，切换回 feature 分支，从堆栈中恢复刚刚保存的内容。</p>
+<p>基本命令如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash //把本地的改动暂存起来
+</span></span><span class="line"><span class="cl">git stash save <span class="s2">&#34;message&#34;</span> 执行存储时，添加备注，方便查找。
+</span></span><span class="line"><span class="cl">git stash pop // 应用最近一次暂存的修改，并删除暂存的记录
+</span></span><span class="line"><span class="cl">git stash apply  // 应用某个存储,但不会把存储从存储列表中删除，默认使用第一个存储,即 stash@<span class="o">{</span>0<span class="o">}</span>，如果要使用其他个，git stash apply stash@<span class="o">{</span><span class="nv">$num</span><span class="o">}</span> 。
+</span></span><span class="line"><span class="cl">git stash list // 查看 stash 有哪些存储
+</span></span><span class="line"><span class="cl">git stash clear // 删除所有缓存的 stash
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面通过几幅图对 stash 的命令做进一步了解。</p>
+<p>此时，我正在开发一个新功能，修改了 1.js 文件里的内容</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd64645d30734e68a4e4349ea94ee064~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519175036869.png"  />
+</p>
+<p>还没开发完成，这个时候，我想切换到 hotfix 分支上修复 bug，得暂停下开发切换到 hotfix 分支，但是现在工作区还有内容，此时如果切换分支 Git 会报出下面的错误</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">error: Your <span class="nb">local</span> changes to the following files would be overwritten by checkout:
+</span></span><span class="line"><span class="cl">        1.js
+</span></span><span class="line"><span class="cl">Please commit your changes or stash them before you switch branches.
+</span></span><span class="line"><span class="cl">Aborting
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面那句话的意思就是说工作区有文件修改，不能提交，需要先进行 commit 或者 stash 操作，执行 <code>git stash</code>，结果如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Saved working directory and index state WIP on stash: 22e561c feat: add 1.js
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时，我们的工作区已经干净了，可以切换到 hotfix 分支进行 bug 修复的工作，假设我们现在 bug 修复完成了，继续切回 feature 分支进行原本功能的开发，此时只需要执行 <code>git stash pop</code>，之前我们暂存的修改就会恢复到工作区，如下图所示。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f4f3a3b24e042868829315b3209b760~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519185011012.png"  />
+</p>
+<p>当我们想要暂存文件，切换分支做某些事的时候，可以用 <code>git stash</code> 这种机制帮助开发。</p>
+<p>推荐在使用 stash 的相关命令时，每一次暂存的时候，不要直接使用 <code>git stash</code> 命令进行暂存下来，而是使用 <code>git stash save &quot;message...&quot;</code> 这种方式，给本次的提交做一个信息的记录。这样，想应用更改的时候，先通过 <code>git stash list</code> 查看一下所有的暂存列表。之后，推荐使用 <code>git stash apply stash@${num}</code> 的方式进行应用对应的 stash，这样不会清空已有的 stash 的列表项，并且能应用到当前的工作区，不需要这个暂存的话，再手动清除就可以了。</p>
+<h3 id="不同的工作区域撤销更改">不同的工作区域撤销更改<a hidden class="anchor" aria-hidden="true" href="#不同的工作区域撤销更改">#</a></h3>
+<p>开发中，我们经常需要回退代码的操作，在不同的工作区域中，回退代码的方式也是不相同的。如下图所示，假设现在要在 feature/revoke 分支上进行开发,</p>
+<p>首先通过 <code>git status</code> 查看下现在的状态。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a4ede8763be443868de951dc08721c1a~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210520115802579.png"  />
+</p>
+<p>目前我们的工作区是很干净的，没有任何修改的操作，此时，修改一下代码再次查看状态，可以看到，1.js 这个文件被修改了。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/371084f06fca40778b2f95900ebf19b6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210520115934693.png"  />
+</p>
+<p>现在我们想把 1.js 这个文件恢复到修改前的状态，即撤回工作区的修改，就可以使用 <code>git checkout -- &lt;filename&gt;</code> 的命令，如果要撤回多个文件的修改，文件之间使用空格隔开，如下图所示，我们撤回了 1.js 文件的修改，工作区也恢复干净了。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/02da2adecc3b43bd917294c203596d1e~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210520120242475.png"  />
+</p>
+<p>如果说现在我们对文件进行了修改，并且已经提交到暂存区了，这部分文件我们不想要的话，那么就可以通过 <code>git reset &lt;filename&gt;</code> 的命令来对特定的文件进行撤销，<code>git reset</code> 会撤回所有存在暂存区的文件，如下图所示，查看前后的状态可知，文件最后成功撤回到工作区了。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c0d6b5e17ec341afb86e1e9732f2ded9~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210520141538130.png"  />
+</p>
+<h3 id="配置-git-alias-提升工作效率">配置 git alias 提升工作效率<a hidden class="anchor" aria-hidden="true" href="#配置-git-alias-提升工作效率">#</a></h3>
+<p>一般我们在工作中，接到开发任务后，需要新创建一个分支进行开发 此时需要 用到 <code>git branch</code>、<code>git checkout</code>、 <code>git pull</code> 等命令，在我们一顿操作后，开发完成，到了提交代码的阶段，又要诸如此类 <code>git add</code> 、<code>git commit</code>、<code>git push</code> 等命令，虽然简单，但是输入起来也是不够简洁，作为一个程序员，开发程序就是为了提高我们的效率的，懒是人类进步的源泉，所以我们可以通过配置别名的方式，简化这些命令。</p>
+<p>它的基本用法是 <code>git config --global alias.&lt;简化的字符&gt; 原始命令</code></p>
+<p>如下面的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --global alias.co checkout
+</span></span><span class="line"><span class="cl">$ git config --global alias.ci commit
+</span></span><span class="line"><span class="cl">$ git config --global alias.br branch
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里将 co 表示 checkout，ci 表示 commit，br 表示 branch，以后提交就可以简写成</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f9e4b6e415724ddbbeb85958b0e2ba05~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519152804390.png"  />
+</p>
+<p><code>--global</code> 是全局参数，也就是配置一次后，这些命令可以在这台电脑下的所有仓库都适用。这些命令其实是更新你全局的 .gitconfig 文件，该文件用来保存全局的 git 配置，<code>vim ~/.gitconfig</code>，执行这段命令后，显示如下，下图展示了刚才通过 <code>git config --global alias</code> 添加的 <code>alias</code>。</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6abbadf7e542451f808b79a644158bf6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519153624712.png"  />
+</p>
+<p>除了上面那种直接通过命令的方式外，也可以通过修改这个文件的 <code>alias</code> 项来设置别名。</p>
+<p>这里分享一个我自己常用的别名设置，把以下配置替换到 .gitconfig 文件里的 <code>[alias]</code> 所属的区域，然后就可以愉快的使用了~</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>alias<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">st</span> <span class="o">=</span> status -sb
+</span></span><span class="line"><span class="cl"><span class="nv">co</span> <span class="o">=</span> checkout
+</span></span><span class="line"><span class="cl"><span class="nv">br</span> <span class="o">=</span> branch
+</span></span><span class="line"><span class="cl"><span class="nv">mg</span> <span class="o">=</span> merge
+</span></span><span class="line"><span class="cl"><span class="nv">ci</span> <span class="o">=</span> commit
+</span></span><span class="line"><span class="cl"><span class="nv">ds</span> <span class="o">=</span> diff --staged
+</span></span><span class="line"><span class="cl"><span class="nv">dt</span> <span class="o">=</span> difftool
+</span></span><span class="line"><span class="cl"><span class="nv">mt</span> <span class="o">=</span> mergetool
+</span></span><span class="line"><span class="cl"><span class="nv">last</span> <span class="o">=</span> log -1 HEAD
+</span></span><span class="line"><span class="cl"><span class="nv">latest</span> <span class="o">=</span> <span class="k">for</span>-each-ref --sort<span class="o">=</span>-committerdate --format<span class="o">=</span><span class="se">\&#34;</span>%<span class="o">(</span>committername<span class="o">)</span>@%<span class="o">(</span>refname:short<span class="o">)</span> <span class="o">[</span>%<span class="o">(</span>committerdate:short<span class="o">)]</span> %<span class="o">(</span>contents<span class="o">)</span><span class="se">\&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ls</span> <span class="o">=</span> log --pretty<span class="o">=</span>format:<span class="se">\&#34;</span>%C<span class="o">(</span>yellow<span class="o">)</span>%h %C<span class="o">(</span>blue<span class="o">)</span>%ad %C<span class="o">(</span>red<span class="o">)</span>%d %C<span class="o">(</span>reset<span class="o">)</span>%s %C<span class="o">(</span>green<span class="o">)[</span>%cn<span class="o">]</span><span class="se">\&#34;</span> --decorate --date<span class="o">=</span>short
+</span></span><span class="line"><span class="cl"><span class="nv">hist</span> <span class="o">=</span> log --pretty<span class="o">=</span>format:<span class="se">\&#34;</span>%C<span class="o">(</span>yellow<span class="o">)</span>%h %C<span class="o">(</span>red<span class="o">)</span>%d %C<span class="o">(</span>reset<span class="o">)</span>%s %C<span class="o">(</span>green<span class="o">)[</span>%an<span class="o">]</span> %C<span class="o">(</span>blue<span class="o">)</span>%ad<span class="se">\&#34;</span> --topo-order --graph --date<span class="o">=</span>short
+</span></span><span class="line"><span class="cl"><span class="nb">type</span> <span class="o">=</span> cat-file -t
+</span></span><span class="line"><span class="cl"><span class="nv">dump</span> <span class="o">=</span> cat-file -p
+</span></span><span class="line"><span class="cl"><span class="nv">lg</span> <span class="o">=</span> log --color --graph --pretty<span class="o">=</span>format:<span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span> --abbrev-commit
+</span></span><span class="line"><span class="cl">复制代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样，我们每次想查看 Git 的历史记录,就不用输入那么一长串命令 直接使用 <code>git lg</code> ，下图是 axios 源码里的提交记录，使用封装后的 <code>git lg</code> 查看的效果图</p>
+<p><img loading="lazy" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1f5df1f881fa4c8fac9cc5868b35908a~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image-20210519162327693.png"  />
+</p>
+<p>分支之间的关系一眼就很明了，在哪个 commit 上进行的 merge 操作也很清晰，可以帮助我们很好的追溯历史的提交和解决问题。</p>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>本文由浅入深的的讲解了 Git 的环境搭建，基本用法，以及工作中使用较为高频的 Git 命令的用法，无论你是前端后端还是其它端的开发，日常工作中少不了对 Git 的使用，我们不仅要会用，还要用的漂亮，用的灵活，用的稳健。这样才能在和同事协作项目的时候更加得心应手，学会了本文这些 Git 的使用技巧后，在日常工作中多多练习，相信会给你带来很大的收获！</p>
+<p>作者：政采云前端团队
+链接：https://juejin.cn/post/6974184935804534815
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rtnh210523.github.io/tags/git/">Git</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://rtnh210523.github.io/posts/my-first-post/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>My First Post</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span><strong><a href="https://jouzeyu.com">Modder</a></strong></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><span class="footer-user" style="text-align: center;display: block;">
+    <span>
+        <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2021035805号-1</a>
+    </span>
+    <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    &nbsp;
+    <span id="busuanzi_container_site_uv" >
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+    </span>
+</span>
+
+<style>
+    .footer-user {
+        font-size: 12px;
+        color: var(--secondary);
+        max-width: calc(var(--main-width) + var(--gap) * 2);
+        margin: auto;
+        padding-bottom: 20px;
+        text-align: center;
+        line-height: 24px;
+    }
+</style>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

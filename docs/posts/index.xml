@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Modder</title>
+    <link>https://rtnh210523.github.io/posts/</link>
+    <description>Recent content in Posts on Modder</description>
+    <image>
+      <url>https://rtnh210523.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://rtnh210523.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>**[Modder](https://jouzeyu.com)**</copyright>
+    <lastBuildDate>Sun, 02 Oct 2022 17:53:26 +0800</lastBuildDate><atom:link href="https://rtnh210523.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图形学实验2</title>
+      <link>https://rtnh210523.github.io/posts/tuxingxue/</link>
+      <pubDate>Sun, 02 Oct 2022 17:53:26 +0800</pubDate>
+      
+      <guid>https://rtnh210523.github.io/posts/tuxingxue/</guid>
+      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
+    </item>
+    
+    <item>
+      <title>图形学实验3</title>
+      <link>https://rtnh210523.github.io/posts/tuxingxue-chap2/</link>
+      <pubDate>Sun, 02 Oct 2022 17:38:17 +0800</pubDate>
+      
+      <guid>https://rtnh210523.github.io/posts/tuxingxue-chap2/</guid>
+      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
+    </item>
+    
+    <item>
+      <title>图形学实验1：绘制三角形</title>
+      <link>https://rtnh210523.github.io/posts/tuxingxue_ch01/</link>
+      <pubDate>Wed, 28 Sep 2022 15:31:00 +0800</pubDate>
+      
+      <guid>https://rtnh210523.github.io/posts/tuxingxue_ch01/</guid>
+      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
+    </item>
+    
+    <item>
+      <title>如何创建一篇新文章</title>
+      <link>https://rtnh210523.github.io/posts/created-new-post/</link>
+      <pubDate>Mon, 12 Sep 2022 13:10:51 +0800</pubDate>
+      
+      <guid>https://rtnh210523.github.io/posts/created-new-post/</guid>
+      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
+    </item>
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://rtnh210523.github.io/posts/my-first-post/</link>
+      <pubDate>Sun, 11 Sep 2022 13:16:49 +0800</pubDate>
+      
+      <guid>https://rtnh210523.github.io/posts/my-first-post/</guid>
+      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
+    </item>
+    
+    <item>
+      <title>「转载」我在工作中是如何使用 Git 的</title>
+      <link>https://rtnh210523.github.io/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/</link>
+      <pubDate>Mon, 14 Mar 2022 19:32:18 +0800</pubDate>
+      
+      <guid>https://rtnh210523.github.io/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/</guid>
+      <description>不要让时代的悲哀，成为你的悲哀！</description>
+    </item>
+    
+  </channel>
+</rss>
