@@ -1,7 +1,7 @@
 ---
 title: "图形学实验3"
 date: 2022-10-02T17:38:17+08:00
-draft: true
+draft: false
 TocOpen: true
 summary: 人的大脑倾向于更容易获得的答案，而非更正确的答案。
 tags: ["laravel"]
